@@ -9,7 +9,8 @@ import com.example.myassignment.ui.screen.*
 
 @Composable
 fun MovieNavGraph(
-    navController: NavHostController
+    navController: NavHostController,
+    movieViewModel: MovieViewModel
 ) {
     NavHost(
         navController = navController,
@@ -19,7 +20,9 @@ fun MovieNavGraph(
             Home.route,
             arguments = Home.arguments
         ) {
-            HomeScreen()
+            HomeScreen(
+                movieViewModel = movieViewModel
+            )
         }
         composable(
             Movies.route,
