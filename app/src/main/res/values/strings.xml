@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyAssignment</string>
+    <string name="label_movie_finder">The Movie Finder</string>
+    <string name="label_movies">Movies</string>
+    <string name="label_tv_shows">TV Shows</string>
+    <string name="label_sign_in">Sign in</string>
+    <string name="label_actors">Actors</string>
 </resources>
