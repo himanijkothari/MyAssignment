@@ -1,6 +1,8 @@
-package com.example.myassignment.di
+package com.example.myassignment
 
-import com.example.myassignment.AuthInterceptor
+
+import com.example.myassignment.data.controller.MovieController
+import com.example.myassignment.data.controller.TvShowController
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -22,8 +24,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi = Moshi.Builder()
+    fun provideMoshi():Moshi = Moshi.Builder()
         .build()
+
 
     @Provides
     @Singleton
@@ -44,4 +47,12 @@ object AppModule {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 
+
+    @Provides
+    @Singleton
+    fun provideMovieController(retrofit: Retrofit) = retrofit.create(MovieController::class.java)
+
+    @Provides
+    @Singleton
+    fun provideTvShowController(retrofit: Retrofit) = retrofit.create(TvShowController::class.java)
 }

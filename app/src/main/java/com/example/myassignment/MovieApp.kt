@@ -17,7 +17,9 @@ import com.example.myassignment.ui.navigation.MovieNavGraph
 
 
 @Composable
-fun MovieAppContent(){
+fun MovieAppContent(
+    movieViewModel: MovieViewModel
+){
 
     val navController = rememberNavController()
     Scaffold (
@@ -36,7 +38,7 @@ fun MovieAppContent(){
             }
         }
     ) {
-        MovieNavGraph(navController)
+        MovieNavGraph(navController, movieViewModel)
     }
 }
 
