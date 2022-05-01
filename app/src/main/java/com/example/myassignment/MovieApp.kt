@@ -11,10 +11,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.myassignment.ui.navigation.MovieNavGraph
 
 
 @Composable
 fun MovieAppContent(){
+
+    val navController = rememberNavController()
     Scaffold (
         topBar = {
             TopAppBar(
@@ -22,20 +27,21 @@ fun MovieAppContent(){
                 backgroundColor = Color.White,
                 contentColor = Color.Black,
                 elevation = 0.dp,
-
                 ) {
                 Column {
-                    AppBar()
+                    AppBar(navController)
                     Spacer(modifier = Modifier.height(8.dp))
-                    MenuBar()
+                    MenuBar(navController)
                 }
             }
         }
-    ) {}
+    ) {
+        MovieNavGraph(navController)
+    }
 }
 
 @Composable
-fun AppBar() {
+fun AppBar(navController: NavHostController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -44,14 +50,14 @@ fun AppBar() {
     ){
         Text(
             text = stringResource(id = R.string.label_movie_finder),
-            modifier = Modifier.clickable {},
+            modifier = Modifier.clickable { navController.navigate(Home.route) },
             color = Color.Black,
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.h6
         )
 
         Button(
-            onClick = { },
+            onClick = { navController.navigate(SignIn.route) },
             modifier = Modifier.size(95.dp,40.dp),
             shape = RoundedCornerShape(25),
             colors = ButtonDefaults.buttonColors(Color.LightGray)
@@ -65,22 +71,22 @@ fun AppBar() {
 }
 
 @Composable
-fun MenuBar() {
+fun MenuBar(navController : NavHostController) {
     Row(){
         MenuBarItem(
             text = stringResource(id = R.string.label_movies),
             modifier = Modifier.weight(1f),
-            onClick = { }
+            onClick = { navController.navigate(Movies.route) }
         )
         MenuBarItem(
             text = stringResource(id = R.string.label_tv_shows),
             modifier = Modifier.weight(1f),
-            onClick = { }
+            onClick = { navController.navigate(TVShows.route)}
         )
         MenuBarItem(
             text = stringResource(id = R.string.label_actors),
             modifier = Modifier.weight(1f),
-            onClick = { }
+            onClick = {navController.navigate(Actors.route) }
         )
     }
 }
