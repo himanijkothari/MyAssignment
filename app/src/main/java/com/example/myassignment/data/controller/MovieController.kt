@@ -18,5 +18,7 @@ interface MovieController {
     @GET("search/multi")
     suspend fun searchForMultiResult(@Query("language") language: String, @Query("query") query: String, @Query("page") page: Int): Response<SearchResult>
 
+    @GET("discover/movie")
+    suspend fun getMoviesByGenre(@Query("language") language: String,@Query("with_genres") genre: String) : Response<Movies>
 
 }

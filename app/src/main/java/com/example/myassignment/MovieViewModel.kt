@@ -67,4 +67,14 @@ class MovieViewModel @Inject constructor(
                 null
             }
         }
+
+    suspend fun getMovieByGenre(genre_id: Int) : Movies? =
+        withContext(viewModelScope.coroutineContext + Dispatchers.IO) {
+            val response = movieController.getMoviesByGenre("en-US",genre_id.toString())
+            if(response.isSuccessful) {
+                response.body()
+            } else {
+                null
+            }
+        }
 }

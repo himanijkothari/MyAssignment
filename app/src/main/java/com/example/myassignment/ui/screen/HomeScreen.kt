@@ -89,7 +89,10 @@ fun HomeScreen( movieViewModel : MovieViewModel) {
             singleLine = true,
             leadingIcon = {
                 IconButton(
-                    onClick = { searchSubmitted.value = true },
+                    onClick = {
+                        searchSubmitted.value = true
+                        keyboard?.hide()
+                  },
                 ) {
                     Icon(
                         imageVector = Icons.Default.Search,
@@ -116,7 +119,10 @@ fun HomeScreen( movieViewModel : MovieViewModel) {
                 imeAction = ImeAction.Search
             ),
             keyboardActions = KeyboardActions(
-                onSearch = { searchSubmitted.value = true }
+                onSearch = {
+                    searchSubmitted.value = true
+                    keyboard?.hide()
+                }
             ),
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.White,

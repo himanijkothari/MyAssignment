@@ -28,7 +28,7 @@ fun MovieNavGraph(
             Movies.route,
             arguments = Movies.arguments
         ) {
-            MovieScreen()
+            MovieScreen( movieViewModel = movieViewModel )
         }
         composable(
             SignIn.route,
