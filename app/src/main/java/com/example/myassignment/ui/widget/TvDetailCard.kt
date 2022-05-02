@@ -72,7 +72,7 @@ fun TvDetailCard(tvShows: TvShowDetail) {
         }
         Spacer(modifier = Modifier.height(2.dp))
         Row {
-            tvShows.first_air_date?.let {
+            tvShows.first_air_date?.substring(0,4)?.let {
                 Text(
                     text = it,
                     fontSize = 12.sp,

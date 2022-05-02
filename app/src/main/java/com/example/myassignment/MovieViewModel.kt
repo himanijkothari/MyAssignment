@@ -6,6 +6,7 @@ import com.example.myassignment.data.controller.MovieController
 import com.example.myassignment.data.controller.TvShowController
 import com.example.myassignment.data.model.TvShows
 import com.example.myassignment.data.model.Movies
+import com.example.myassignment.data.model.SearchResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -50,6 +51,16 @@ class MovieViewModel @Inject constructor(
     suspend fun getTopRatedTvShows() : TvShows? =
         withContext(viewModelScope.coroutineContext + Dispatchers.IO) {
             val response = tvShowController.getTopRatedTvShows("en-US",(1..5).random())
+            if(response.isSuccessful) {
+                response.body()
+            } else {
+                null
+            }
+        }
+
+    suspend fun getMultiSearchResult(keyword : String): SearchResult? =
+        withContext(viewModelScope.coroutineContext + Dispatchers.IO) {
+            val response = movieController.searchForMultiResult("en-US",keyword, 1)
             if(response.isSuccessful) {
                 response.body()
             } else {
